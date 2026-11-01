@@ -1,0 +1,332 @@
+[
+  {
+    "text": "Léa Martin",
+    "entity": "PERSON",
+    "language": "en"
+  },
+  {
+    "text": "maria.lopez@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "+971 50 555 0142",
+    "entity": "PHONE_NUMBER",
+    "language": "en"
+  },
+  {
+    "text": "12 rue de Rivoli",
+    "entity": "STREET_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "CMD-84903659",
+    "entity": "ORDER_ID",
+    "language": "en"
+  },
+  {
+    "text": "4012 8888 8888 1881",
+    "entity": "CREDIT_CARD",
+    "language": "en"
+  },
+  {
+    "text": "Omar Haddad",
+    "entity": "PERSON",
+    "language": "fr"
+  },
+  {
+    "text": "omar.haddad@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "+33 6 39 98 45 67",
+    "entity": "PHONE_NUMBER",
+    "language": "fr"
+  },
+  {
+    "text": "48 Elm Road",
+    "entity": "STREET_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "CMD-87832216",
+    "entity": "ORDER_ID",
+    "language": "en"
+  },
+  {
+    "text": "5555 5555 5555 4444",
+    "entity": "CREDIT_CARD",
+    "language": "fr"
+  },
+  {
+    "text": "John Carter",
+    "entity": "PERSON",
+    "language": "en"
+  },
+  {
+    "text": "john.carter@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "+33 6 39 98 45 67",
+    "entity": "PHONE_NUMBER",
+    "language": "fr"
+  },
+  {
+    "text": "7 avenue Jean Jaurès",
+    "entity": "STREET_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "CMD-99141000",
+    "entity": "ORDER_ID",
+    "language": "fr"
+  },
+  {
+    "text": "4111 1111 1111 1111",
+    "entity": "CREDIT_CARD",
+    "language": "fr"
+  },
+  {
+    "text": "Maria Lopez",
+    "entity": "PERSON",
+    "language": "en"
+  },
+  {
+    "text": "aisha.khan@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "+971 50 555 0142",
+    "entity": "PHONE_NUMBER",
+    "language": "en"
+  },
+  {
+    "text": "7 avenue Jean Jaurès",
+    "entity": "STREET_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "CMD-48197765",
+    "entity": "ORDER_ID",
+    "language": "en"
+  },
+  {
+    "text": "4012 8888 8888 1881",
+    "entity": "CREDIT_CARD",
+    "language": "fr"
+  },
+  {
+    "text": "Léa Martin",
+    "entity": "PERSON",
+    "language": "fr"
+  },
+  {
+    "text": "omar.haddad@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "06 39 98 12 34",
+    "entity": "PHONE_NUMBER",
+    "language": "fr"
+  },
+  {
+    "text": "48 Elm Road",
+    "entity": "STREET_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "CMD-57709585",
+    "entity": "ORDER_ID",
+    "language": "fr"
+  },
+  {
+    "text": "4111 1111 1111 1111",
+    "entity": "CREDIT_CARD",
+    "language": "en"
+  },
+  {
+    "text": "John Carter",
+    "entity": "PERSON",
+    "language": "en"
+  },
+  {
+    "text": "hugo.bernard@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "06 39 98 12 34",
+    "entity": "PHONE_NUMBER",
+    "language": "fr"
+  },
+  {
+    "text": "221 Baker Street",
+    "entity": "STREET_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "CMD-48578460",
+    "entity": "ORDER_ID",
+    "language": "en"
+  },
+  {
+    "text": "4111 1111 1111 1111",
+    "entity": "CREDIT_CARD",
+    "language": "fr"
+  },
+  {
+    "text": "Julien Moreau",
+    "entity": "PERSON",
+    "language": "en"
+  },
+  {
+    "text": "lea.martin@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "+1 555 0199 2041",
+    "entity": "PHONE_NUMBER",
+    "language": "en"
+  },
+  {
+    "text": "48 Elm Road",
+    "entity": "STREET_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "CMD-20815439",
+    "entity": "ORDER_ID",
+    "language": "en"
+  },
+  {
+    "text": "4111 1111 1111 1111",
+    "entity": "CREDIT_CARD",
+    "language": "en"
+  },
+  {
+    "text": "Hugo Bernard",
+    "entity": "PERSON",
+    "language": "en"
+  },
+  {
+    "text": "lea.martin@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "+971 50 555 0142",
+    "entity": "PHONE_NUMBER",
+    "language": "en"
+  },
+  {
+    "text": "7 avenue Jean Jaurès",
+    "entity": "STREET_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "CMD-28377915",
+    "entity": "ORDER_ID",
+    "language": "fr"
+  },
+  {
+    "text": "5555 5555 5555 4444",
+    "entity": "CREDIT_CARD",
+    "language": "en"
+  },
+  {
+    "text": "Aisha Khan",
+    "entity": "PERSON",
+    "language": "fr"
+  },
+  {
+    "text": "lea.martin@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "+1 555 0199 2041",
+    "entity": "PHONE_NUMBER",
+    "language": "en"
+  },
+  {
+    "text": "7 avenue Jean Jaurès",
+    "entity": "STREET_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "CMD-40970943",
+    "entity": "ORDER_ID",
+    "language": "fr"
+  },
+  {
+    "text": "4111 1111 1111 1111",
+    "entity": "CREDIT_CARD",
+    "language": "fr"
+  },
+  {
+    "text": "John Carter",
+    "entity": "PERSON",
+    "language": "fr"
+  },
+  {
+    "text": "camille.dubois@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "+1 555 0199 2041",
+    "entity": "PHONE_NUMBER",
+    "language": "en"
+  },
+  {
+    "text": "7 avenue Jean Jaurès",
+    "entity": "STREET_ADDRESS",
+    "language": "fr"
+  },
+  {
+    "text": "CMD-10240379",
+    "entity": "ORDER_ID",
+    "language": "fr"
+  },
+  {
+    "text": "4012 8888 8888 1881",
+    "entity": "CREDIT_CARD",
+    "language": "en"
+  },
+  {
+    "text": "Maria Lopez",
+    "entity": "PERSON",
+    "language": "fr"
+  },
+  {
+    "text": "julien.moreau@example.com",
+    "entity": "EMAIL_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "+1 555 0142 3377",
+    "entity": "PHONE_NUMBER",
+    "language": "en"
+  },
+  {
+    "text": "48 Elm Road",
+    "entity": "STREET_ADDRESS",
+    "language": "en"
+  },
+  {
+    "text": "CMD-92685106",
+    "entity": "ORDER_ID",
+    "language": "fr"
+  },
+  {
+    "text": "4012 8888 8888 1881",
+    "entity": "CREDIT_CARD",
+    "language": "fr"
+  }
+]
