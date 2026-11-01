@@ -36,6 +36,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [0.1.0] - 2026-10-20
 
+Not published; the baseline for the changes above.
+
 ### Added
 
 - OpenTelemetry GenAI ingester for OTLP/JSON and Collector file exports (semconv v1.37 and the legacy indexed layout).
