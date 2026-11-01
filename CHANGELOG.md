@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-01
+
 ### Changed
 
 - **Breaking:** Python 3.12 or newer is required (was 3.11). CI tests 3.12, 3.13 and 3.14; local development uses 3.14.
