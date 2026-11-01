@@ -30,6 +30,10 @@ All notable changes to this project are documented here. The format follows
 - **Breaking:** the SQLite `triage` table and `Store.save_triage` / `Store.triage`. Nothing read them; triage flags and topics stay on the queued candidates. Stores created by 0.1.0 keep an unused `triage` table.
 - pytest as a pre-commit hook; the CI `tests` job runs it.
 
+### Fixed
+
+- Triage gave different clusters on macOS and Linux for the same traces. Texts with no word in common sit at distance sqrt(2), and HDBSCAN broke those ties on the last bit of a float, which differs by platform. Distances are now rounded to 9 decimals before clustering (`DISTANCE_DECIMALS`), so ties are exact everywhere. README numbers are unchanged.
+
 ## [0.1.0] - 2026-10-20
 
 ### Added

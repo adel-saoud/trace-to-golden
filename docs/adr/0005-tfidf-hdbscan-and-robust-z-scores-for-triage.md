@@ -31,7 +31,8 @@ key; median and MAD are not pulled by the very outliers they look for.
 - On the 102 sample traces: 16 intent clusters, 33 flagged traces, 47 candidates for review
   (`results/manifest.json`, `runs.presidio.intent_clusters`, `flagged_traces`,
   `review_candidates`).
-- Bad: on sparse input HDBSCAN computes brute-force pairwise distances, so memory grows with
+- Bad: HDBSCAN runs on a dense pairwise distance matrix (rounded so ties at sqrt(2) between
+  texts with no shared word cluster the same on every platform), so memory grows with
   the square of the trace count; above a few tens of thousands of traces per run, triage a
   window or a sample (README, Limits; `cluster.py` docstring).
 - Bad: TF-IDF groups by shared words, so paraphrases with no word in common land in different

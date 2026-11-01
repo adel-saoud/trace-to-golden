@@ -1,12 +1,18 @@
 """Group similar user questions so a reviewer sees one case per intent.
 
 TF-IDF vectors are L2-normalised by default, so euclidean distance ranks pairs
-the same way cosine distance does, and HDBSCAN can use its default metric.
-HDBSCAN labels points that fit no cluster as -1 (scikit-learn >= 1.3).
+the same way cosine distance does. HDBSCAN labels points that fit no cluster as
+-1 (scikit-learn >= 1.3).
 
-Scale limit: on sparse input HDBSCAN runs brute-force pairwise distances, so
-memory grows with the square of the number of traces. Run triage on a time
-window or a sample (a few tens of thousands of traces at most).
+Texts with no term in common sit at distance sqrt(2) from each other, which is
+common (two languages, an off-topic question). The float result of that sqrt
+differs in its last bit between platforms, and HDBSCAN breaks ties on that bit,
+so the same traces clustered differently on macOS and Linux. Distances are
+computed once and rounded to `DISTANCE_DECIMALS`, so ties are exact everywhere.
+
+Scale limit: the pairwise distance matrix is dense, so memory grows with the
+square of the number of traces. Run triage on a time window or a sample (a few
+tens of thousands of traces at most).
 """
 
 from __future__ import annotations
@@ -24,6 +30,10 @@ from trace_to_golden.redact.placeholders import strip_placeholders
 NOISE_LABEL = -1
 """HDBSCAN label for a text that fits no cluster."""
 
+DISTANCE_DECIMALS = 9
+"""Rounding applied to pairwise distances: far coarser than float noise (about
+1e-16), far finer than any gap between two real texts."""
+
 TOPIC_TERMS = 3
 """Top TF-IDF terms joined into a cluster topic: enough to tell intents apart, short
 enough to read in the queue table."""
@@ -36,6 +46,13 @@ class ClusteringResult:
     labels: list[int]
     probabilities: list[float]
     topics: dict[int, str]
+
+
+def euclidean_distances(vectors: NDArray[np.float64]) -> NDArray[np.float64]:
+    """Pairwise euclidean distances between rows, the metric HDBSCAN uses by default."""
+    squared_norms = (vectors**2).sum(axis=1)
+    squared = squared_norms[:, None] + squared_norms[None, :] - 2.0 * (vectors @ vectors.T)
+    return np.sqrt(np.clip(squared, 0.0, None))
 
 
 def cluster_texts(
@@ -53,14 +70,15 @@ def cluster_texts(
     # and converted to typed numpy arrays right away.
     vectorizer: Any = TfidfVectorizer(stop_words=stop_words, ngram_range=(1, 2), sublinear_tf=True)
     matrix: Any = vectorizer.fit_transform([strip_placeholders(t) for t in texts])
+    dense: NDArray[np.float64] = np.asarray(matrix.todense(), dtype=np.float64)
+    distances = np.round(euclidean_distances(dense), DISTANCE_DECIMALS)
     # copy=True keeps HDBSCAN from mutating the input; scikit-learn 1.9 types the
     # parameter as its "warn" sentinel during the default change.
-    model: Any = HDBSCAN(min_cluster_size=min_cluster_size, copy=True)  # pyright: ignore[reportArgumentType]
-    model.fit(matrix)
+    model: Any = HDBSCAN(min_cluster_size=min_cluster_size, metric="precomputed", copy=True)  # pyright: ignore[reportArgumentType]
+    model.fit(distances)
     labels: NDArray[np.int_] = np.asarray(model.labels_, dtype=np.int_)
     probabilities: NDArray[np.float64] = np.asarray(model.probabilities_, dtype=np.float64)
     terms: list[str] = [str(t) for t in vectorizer.get_feature_names_out()]
-    dense: NDArray[np.float64] = np.asarray(matrix.todense(), dtype=np.float64)
     topics: dict[int, str] = {}
     for label in sorted({int(x) for x in labels} - {NOISE_LABEL}):
         weights = [float(w) for w in dense[labels == label].mean(axis=0)]

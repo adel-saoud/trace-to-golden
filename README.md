@@ -132,7 +132,7 @@ All records: [docs/adr/README.md](docs/adr/README.md).
   on very long requests. If all your traces are in MLflow and MLflow datasets suit you, MLflow 3
   already builds eval datasets from traces (`mlflow.genai.datasets.create_dataset`,
   `merge_records`).
-- HDBSCAN on sparse vectors runs brute force, with memory growing with the square of the trace
+- Triage builds a dense pairwise distance matrix, so memory grows with the square of the trace
   count. Above a few tens of thousands of traces per run, triage a time window or a sample.
 - A v2 case needs a category, a reference answer or a rubric. Traces that failed have no
   answer, so they export only once a reviewer adds a category or a rubric. Schema v1 needs a

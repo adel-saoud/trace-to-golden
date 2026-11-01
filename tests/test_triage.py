@@ -2,10 +2,15 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+import numpy as np
+import pytest
+from numpy.typing import NDArray
+
 from trace_to_golden.language import clustering_stop_words
 from trace_to_golden.models import Flag, RedactedTrace, TraceRecord
 from trace_to_golden.triage import candidates_from_triage, triage_traces
-from trace_to_golden.triage.cluster import NOISE_LABEL, cluster_texts
+from trace_to_golden.triage import cluster as cluster_module
+from trace_to_golden.triage.cluster import NOISE_LABEL, cluster_texts, euclidean_distances
 from trace_to_golden.triage.flags import flag_records, robust_z_scores
 
 TRACKING = [
@@ -73,6 +78,31 @@ def test_cluster_groups_intents_and_isolates_off_topic():
     assert "order" in result.topics[result.labels[0]]
     assert "retourner" in result.topics[result.labels[5]]
     assert all("email" not in topic for topic in result.topics.values())
+
+
+def test_euclidean_distances_match_the_definition():
+    vectors = np.array([[1.0, 0.0], [0.0, 1.0], [1.0, 0.0], [0.0, 0.0]])
+    distances = euclidean_distances(vectors)
+    assert distances[0, 1] == pytest.approx(np.sqrt(2))
+    assert distances[0, 2] == 0.0
+    assert distances[0, 3] == pytest.approx(1.0)
+    assert np.allclose(np.diag(distances), 0.0)
+
+
+def test_cluster_ignores_last_bit_float_noise(monkeypatch: pytest.MonkeyPatch):
+    """Ties at sqrt(2) must not depend on the platform's last bit (macOS vs Linux)."""
+    texts = [*TRACKING, *RETOURS, OFF_TOPIC, TRACKING[0]]
+    expected = cluster_texts(texts, min_cluster_size=3, stop_words=STOP_WORDS).labels
+    rng = np.random.default_rng(0)
+
+    def noisy_distances(vectors: NDArray[np.float64]) -> NDArray[np.float64]:
+        exact = euclidean_distances(vectors)
+        return exact + rng.choice([-1e-15, 0.0, 1e-15], size=exact.shape)
+
+    monkeypatch.setattr(cluster_module, "euclidean_distances", noisy_distances)
+    for _ in range(50):
+        assert cluster_texts(texts, min_cluster_size=3, stop_words=STOP_WORDS).labels == expected
+    assert expected[10] == NOISE_LABEL
 
 
 def test_triage_queues_flagged_and_representatives(trace_factory: Callable[..., RedactedTrace]):
