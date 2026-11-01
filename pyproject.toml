@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "trace-to-golden"
-version = "0.1.0"
+version = "0.2.0"
 description = "Turn production LLM traces (OpenTelemetry GenAI, MLflow) into reviewed, PII-free golden eval cases."
 readme = "README.md"
 license = "MIT"
