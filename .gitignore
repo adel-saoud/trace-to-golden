@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Caches and coverage
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Local trace store and exports (may hold redacted production text)
+*.db
+out/
+
+# Personal release clips
+brag-output/
+
+# OS
+.DS_Store
