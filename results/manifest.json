@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-24T12:27:07+00:00",
+  "git_commit": "uncommitted",
+  "command": "uv run python scripts/reproduce.py",
+  "python": "3.14.4",
+  "packages": {
+    "trace-to-golden": "0.1.0",
+    "presidio-analyzer": "2.2.362",
+    "presidio-anonymizer": "2.2.364",
+    "spacy": "3.8.16",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pydantic": "2.14.1",
+    "jsonschema": "4.26.0"
+  },
+  "models": {
+    "en": {
+      "name": "en_core_web_sm",
+      "version": "3.8.0"
+    },
+    "fr": {
+      "name": "fr_core_news_md",
+      "version": "3.8.0"
+    }
+  },
+  "seed": 7,
+  "datasets": {
+    "src/trace_to_golden/samples/data/existing_golden.json": "c8d01078dea115f9cad7361711532a0cfc6f74731b208d0388ac33857baa0bea",
+    "src/trace_to_golden/samples/data/mlflow_traces.jsonl": "b7aebd96791d7e379981da3e280466028621f9a6d4fd8358ceab6c38353f5a37",
+    "src/trace_to_golden/samples/data/otel_traces.jsonl": "285f54607495af8a2508fc573732266b7623267e908fc811b7d9817227468078",
+    "src/trace_to_golden/samples/data/pii_ground_truth.json": "92aa5ee9a6ed214a02522a7d23eea60e6907a36cf61530ffded9f0dd4f3d1b30",
+    "tests/fixtures/golden-dataset.v2.schema.json": "69a6cc884c873c9cbf385d3ca0b55243077b88aad79e8aea7d002df713921737"
+  },
+  "hardware": {
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "cpu_count": 14
+  },
+  "runs": {
+    "presidio": {
+      "planted_pii_removed": {
+        "value": 66,
+        "sample_size": 66,
+        "method": "planted value absent from the SQLite bytes"
+      },
+      "extra_detections": {
+        "value": 6,
+        "sample_size": 72,
+        "method": "redactions beyond the planted count, per entity type"
+      },
+      "extra_detections_by_entity": {
+        "PERSON": 4,
+        "LOCATION": 2
+      },
+      "leaked_by_entity": {},
+      "allowlist_values_stored": {
+        "value": 0,
+        "sample_size": 95,
+        "method": "distinct enduser.id and url.full values found in the SQLite bytes"
+      },
+      "planted_pii_removed_en": {
+        "value": 34,
+        "sample_size": 34,
+        "method": "same, for one language"
+      },
+      "planted_pii_removed_fr": {
+        "value": 32,
+        "sample_size": 32,
+        "method": "same, for one language"
+      },
+      "traces": {
+        "value": 102,
+        "sample_size": 102,
+        "method": "records stored"
+      },
+      "intent_clusters": {
+        "value": 16,
+        "sample_size": 102,
+        "method": "HDBSCAN clusters, noise excluded"
+      },
+      "flagged_traces": {
+        "value": 33,
+        "sample_size": 102,
+        "method": "traces with at least one flag"
+      },
+      "review_candidates": {
+        "value": 47,
+        "sample_size": 102,
+        "method": "candidates queued by triage"
+      },
+      "cases_exported": {
+        "value": 44,
+        "sample_size": 47,
+        "method": "approved candidates written as schema v2, file valid against the copied schema"
+      },
+      "duplicates_dropped": {
+        "value": 3,
+        "sample_size": 47,
+        "method": "exact or near duplicates"
+      }
+    },
+    "regex": {
+      "planted_pii_removed": {
+        "value": 55,
+        "sample_size": 66,
+        "method": "planted value absent from the SQLite bytes"
+      },
+      "extra_detections": {
+        "value": 0,
+        "sample_size": 55,
+        "method": "redactions beyond the planted count, per entity type"
+      },
+      "extra_detections_by_entity": {},
+      "leaked_by_entity": {
+        "PERSON": 11
+      },
+      "allowlist_values_stored": {
+        "value": 0,
+        "sample_size": 95,
+        "method": "distinct enduser.id and url.full values found in the SQLite bytes"
+      },
+      "planted_pii_removed_en": {
+        "value": 28,
+        "sample_size": 34,
+        "method": "same, for one language"
+      },
+      "planted_pii_removed_fr": {
+        "value": 27,
+        "sample_size": 32,
+        "method": "same, for one language"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "shop-0001",
+    "topic": "Order tracking",
+    "input_text": "Where is my order?",
+    "expected_category": "order_tracking"
+  },
+  {
+    "id": "shop-0002",
+    "topic": "Retours",
+    "input_text": "Comment retourner un article ?",
+    "expected_category": "returns"
+  }
+]
